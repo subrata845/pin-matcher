@@ -17,12 +17,12 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="input-section half-width">
-                    <input class="form-control" type="text">
+                <div class="input-section half-width" >
+                    <input class="form-control" type="text"  id="calc-input">
                     <div class="numbers">
-                        <div class="calc-body">
-                            <div class="calc-button-row">
-                              <div class="button">7</div>
+                        <div class="calc-body" id="calc-body">
+                            <div class="calc-button-row" id="calc-row-1">
+                              <div class="button" id="button-7">7</div>
                               <div class="button">8</div>
                               <div class="button">9</div>
                             </div>
@@ -42,7 +42,7 @@
                                 <div class="button">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn">Submit</button>
+                                <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -54,5 +54,17 @@
             <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
+
+
+    <script>
+        //calc body input checker
+        const calc=document.getElementById("button-7").value;
+        calc.addEventListener("click",function(){
+            console.log("7");
+            
+        });
+        document.getElementById("calc-input").innerText=calcValue;
+    </script>
+
 </body>
 </html>
