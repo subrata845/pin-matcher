@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="container-id">
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
@@ -116,19 +116,24 @@ const finalSubmit=document.getElementById("button-submit");
             let calcInputTextNumber = parseFloat(calcInputTextValue);
             let randomTextBoxValue = document.getElementById("random-pin-show").value;
             let randomTextBoxNumber = parseFloat(randomTextBoxValue);
-            if(calcInputTextNumber==randomTextBoxNumber)
-            {
-               const succ=document.getElementById("success-p");
-               succ.style.visibility="visible";
-            }
-            else
-            {
-                const fail=document.getElementById("fail-p");
-                fail.style.visibility="visible";
-            }
+        
+         
+            if (calcInputTextNumber == randomTextBoxNumber) {
+             showAndHide("success-p");
+                } else {
+                 showAndHide("fail-p");
+                           }
+            function showAndHide(elementId) {
+                                const element = document.getElementById(elementId);
+                                element.style.visibility = "visible";
+                                setTimeout(function() {
+                                    element.style.visibility = "hidden";
+                                }, 5000);
+                                        }
+                                    
             document.getElementById("calc-input").value= " ";
             document.getElementById("random-pin-show").value= " ";
-         });
+                                    } );                                                           
     </script>
 
 </body>
