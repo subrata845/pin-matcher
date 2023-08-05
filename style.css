@@ -106,7 +106,7 @@ color: #E0B612;
 }
 
 #fail-p{
-    display: none;
+    visibility: hidden;
 }
 #success-p{
     visibility: hidden;
