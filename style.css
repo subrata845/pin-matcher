@@ -104,3 +104,10 @@ color: #E0B612;
     color: #FF3C5F;
     margin-top: 10px;
 }
+
+#fail-p{
+    display: none;
+}
+#success-p{
+    visibility: hidden;
+}

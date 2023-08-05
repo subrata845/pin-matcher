@@ -21,7 +21,7 @@
                     <input class="form-control" type="text"  id="calc-input">
                     <div class="numbers">
                         <div class="calc-body" id="calc-body">
-                            <div class="calc-button-row" id="calc-row-1">
+                            <div class="calc-button-row">
                               <div class="button" id="button-7">7</div>
                               <div class="button" id="button-8">8</div>
                               <div class="button" id="button-9">9</div>
@@ -42,7 +42,7 @@
                                 <div class="button" id="button-c">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn" id="submit-btn">Submit</button>
+                                <button type="submit" class="submit-btn" id="button-submit">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -50,8 +50,8 @@
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p class="notify" id="fail-p" >❌ Pin Didn't Match, Please try again</p>
+            <p class="notify" id="success-p">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
@@ -59,15 +59,14 @@
 });
 
     <script>
-       
-        // const calc_c=document.getElementById("button-c");
-        // calc_c.addEventListener("click",function(){
-        //     document.getElementById("calc-input").style.display="ddd";
-        //  });
 
-        
- 
+        //calculator clear button
+        const calc_c=document.getElementById("button-c");
+        calc_c.addEventListener("click",function(){
+            document.getElementById("calc-input").value = "";
+         });
 
+         //calculator number button
          for (let i = 0; i <= 9; i++) {
     const calc = document.getElementById(`button-${i}`);
     calc.addEventListener("click", function() {
@@ -75,29 +74,61 @@
     });
           }
 
+
+        //calculator text box 
+
          function updateCalcInput(id)
          {
+            
             var node=document.getElementById(id);
             btnValue=node.innerHTML;
             document.getElementById("calc-input").value+= btnValue;
+          
          }
+
+         //random pic text box show
+
+        
          function updateRandomTextBox(id,btnValue)
          {  
             document.getElementById("random-pin-show").value= " ";
             var node=document.getElementById(id);
-            document.getElementById("random-pin-show").value+= btnValue; 
-            }
+           var ppp=document.getElementById("random-pin-show").value+= btnValue; 
+         }
 
-
-         const button = document.getElementById("btn-generate");
-button.addEventListener("click", function() {
-    const min = 1000;
-    const max = 9999;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    console.log(randomNumber);
-     updateRandomTextBox("btn-generate",randomNumber);
-    
+        // random number generation
+        var randomNum=0;
+        const button = document.getElementById("btn-generate");
+        button.addEventListener("click", function() {
+        const min = 1000;
+        const max = 9999;
+        const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log(randomNumber);
+        updateRandomTextBox("btn-generate",randomNumber);
 });
+
+
+        //final submit button
+
+const finalSubmit=document.getElementById("button-submit");
+        finalSubmit.addEventListener("click",function(){
+            let calcInputTextValue =document.getElementById("calc-input").value;
+            let calcInputTextNumber = parseFloat(calcInputTextValue);
+            let randomTextBoxValue = document.getElementById("random-pin-show").value;
+            let randomTextBoxNumber = parseFloat(randomTextBoxValue);
+            if(calcInputTextNumber==randomTextBoxNumber)
+            {
+               const succ=document.getElementById("success-p");
+               succ.style.visibility="visible";
+            }
+            else
+            {
+                const fail=document.getElementById("fail-p");
+                fail.style.visibility="visible";
+            }
+            document.getElementById("calc-input").value= " ";
+            document.getElementById("random-pin-show").value= " ";
+         });
     </script>
 
 </body>
